@@ -11,7 +11,7 @@
 #include "SkColorSpace.h"
 #include "SkColorSpaceXform.h"
 #include "SkData.h"
-#include "SkGifCodec.h"
+//#include "SkGifCodec.h"
 #include "SkHalf.h"
 #include "SkIcoCodec.h"
 #include "SkJpegCodec.h"
@@ -35,7 +35,7 @@ static const DecoderProc gDecoderProcs[] = {
 #ifdef SK_HAS_WEBP_LIBRARY
     { SkWebpCodec::IsWebp, SkWebpCodec::NewFromStream },
 #endif
-    { SkGifCodec::IsGif, SkGifCodec::NewFromStream },
+//    { SkGifCodec::IsGif, SkGifCodec::NewFromStream },
 #ifdef SK_HAS_PNG_LIBRARY
     { SkIcoCodec::IsIco, SkIcoCodec::NewFromStream },
 #endif
