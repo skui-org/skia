@@ -357,7 +357,6 @@ set(skia_sources
     src/gpu/gl/builders/GrGLProgramBuilder.cpp
     src/gpu/gl/builders/GrGLShaderStringBuilder.cpp
     src/gpu/gl/builders/GrGLSLPrettyPrint.cpp
-  # src/gpu/gl/egl/GrGLCreateNativeInterface_egl.cpp
   # src/gpu/gl/glfw/GrGLCreateNativeInterface_glfw.cpp
     src/gpu/gl/GrGLAssembleInterface.cpp
     src/gpu/gl/GrGLBuffer.cpp
@@ -852,7 +851,8 @@ if(UNIX)
                 )
   else() # currently assume linux
     list(APPEND skia_sources
-                src/gpu/gl/glx/GrGLCreateNativeInterface_glx.cpp
+                src/gpu/gl/egl/GrGLCreateNativeInterface_egl.cpp
+                #src/gpu/gl/glx/GrGLCreateNativeInterface_glx.cpp
                 )
   endif()
 endif()
