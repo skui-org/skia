@@ -26,7 +26,6 @@ cmake_minimum_required (VERSION 3.1)
 project (skia)
 set (CMAKE_CXX_STANDARD_REQUIRED 14)
 
-find_package(OpenGL REQUIRED)
 find_package(Freetype)
 
 if(EXPAT_FOUND AND ZLIB_FOUND)
@@ -47,11 +46,29 @@ if(CMAKE_COMPILER_IS_GNUCXX OR ${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
     add_compile_options(-Wno-maybe-uninitialized)
   endif()
 elseif(MSVC)
-  add_compile_options(/wd4244
+  add_compile_options(/wd4100
+                      /wd4125
+                      /wd4127
+                      /wd4189
+                      /wd4201
+                      /wd4244
+                      /wd4245
                       /wd4251
                       /wd4267
                       /wd4291
+                      /wd4310
+                      /wd4324
+                      /wd4389
+                      /wd4456
+                      /wd4457
+                      /wd4505
                       /wd4554
+                      /wd4589
+                      /wd4611
+                      /wd4701
+                      /wd4702
+                      /wd4703
+                      /wd4706
                       /wd4800
                       )
 endif()
@@ -631,9 +648,9 @@ set(skia_sources
   # src/ports/SkFontHost_FreeType_common.cpp
     src/ports/SkFontMgr_custom.cpp
     src/ports/SkFontMgr_custom_directory.cpp
-    src/ports/SkFontMgr_custom_directory_factory.cpp
-    src/ports/SkFontMgr_custom_embedded_factory.cpp
-    src/ports/SkFontMgr_custom_empty_factory.cpp
+  # src/ports/SkFontMgr_custom_directory_factory.cpp
+  # src/ports/SkFontMgr_custom_embedded_factory.cpp
+  # src/ports/SkFontMgr_custom_empty_factory.cpp
   # src/ports/SkFontMgr_empty_factory.cpp
   # src/ports/SkFontMgr_fontconfig.cpp
   # src/ports/SkFontMgr_fontconfig_factory.cpp
@@ -861,7 +878,7 @@ if(X86)
             # src/opts/SkBitmapProcState_opts_none.cpp
               src/opts/SkBitmapProcState_opts_SSE2.cpp
               src/opts/SkBitmapProcState_opts_SSSE3.cpp
-              src/opts/SkBlitMask_opts_none.cpp
+            # src/opts/SkBlitMask_opts_none.cpp
             # src/opts/SkBlitRow_opts_none.cpp
               src/opts/SkBlitRow_opts_SSE2.cpp
               src/opts/SkOpts_avx.cpp
@@ -871,7 +888,9 @@ if(X86)
               src/opts/SkOpts_sse42.cpp
               src/opts/SkOpts_ssse3.cpp
               )
-  set_source_files_properties(src/opts/SkBitmapProcState_opts_SSSE3.cpp PROPERTIES COMPILE_FLAGS -mssse3)
+  if(NOT MSVC)
+    set_source_files_properties(src/opts/SkBitmapProcState_opts_SSSE3.cpp PROPERTIES COMPILE_FLAGS -mssse3)
+  endif()
 elseif(ARM)
   list(APPEND skia_sources
               src/core/SkUtilsArm.cpp
@@ -900,14 +919,13 @@ elseif(SKIA_STATIC)
 endif()
 target_compile_definitions(skia PRIVATE SKIA_IMPLEMENTATION=1)
 target_compile_definitions(skia PUBLIC $<$<CONFIG:Debug>:SK_DEBUG>)
-target_link_libraries(skia PUBLIC ${OPENGL_gl_LIBRARY}
-                                  ${OTHER_LIBRARIES}
+target_link_libraries(skia PUBLIC ${OTHER_LIBRARIES}
                                   png expat zlib gif jpeg-turbo
                                   $<$<NOT:$<PLATFORM_ID:Windows>>:-ldl>)
 if(WIN32)
   target_link_libraries(skia PUBLIC usp10)
 elseif(UNIX)
-  target_link_libraries(skia PUBLIC ${FREETYPE_LIBRARIES})
+  target_link_libraries(skia PUBLIC ${FREETYPE_LIBRARIES} fontconfig)
   target_include_directories(skia PRIVATE ${FREETYPE_INCLUDE_DIRS})
 endif()
 target_include_directories(skia SYSTEM
