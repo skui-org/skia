@@ -16,7 +16,7 @@
 
 class GrGLGpu;
 
-#ifdef SK_BUILD_FOR_WIN
+#ifdef _MSC_VER
 // Windows gives bogus warnings about inheriting asTexture/asRenderTarget via dominance.
 #pragma warning(push)
 #pragma warning(disable: 4250)
@@ -77,7 +77,7 @@ private:
 
 };
 
-#ifdef SK_BUILD_FOR_WIN
+#ifdef _MSC_VER
 #pragma warning(pop)
 #endif
 

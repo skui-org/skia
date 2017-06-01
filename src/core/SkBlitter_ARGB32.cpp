@@ -62,7 +62,7 @@ const SkPixmap* SkARGB32_Blitter::justAnOpaqueColor(uint32_t* value) {
     return nullptr;
 }
 
-#if defined _WIN32  // disable warning : local variable used without having been initialized
+#ifdef _MSC_VER  // disable warning : local variable used without having been initialized
 #pragma warning ( push )
 #pragma warning ( disable : 4701 )
 #endif
@@ -266,7 +266,7 @@ void SkARGB32_Blitter::blitRect(int x, int y, int width, int height) {
     }
 }
 
-#if defined _WIN32
+#ifdef _MSC_VER
 #pragma warning ( pop )
 #endif
 
