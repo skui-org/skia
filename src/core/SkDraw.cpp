@@ -1391,7 +1391,7 @@ void SkDraw::drawText_asPaths(const char text[], size_t byteLength, SkScalar x, 
 }
 
 // disable warning : local variable used without having been initialized
-#if defined _WIN32
+#ifdef _MSC_VER
 #pragma warning ( push )
 #pragma warning ( disable : 4701 )
 #endif
@@ -1631,7 +1631,7 @@ void SkDraw::drawPosText(const char text[], size_t byteLength, const SkScalar po
         offset, *fMatrix, pos, scalarsPerPosition, textAlignment, cache.get(), drawOneGlyph);
 }
 
-#if defined _WIN32
+#ifdef _MSC_VER
 #pragma warning ( pop )
 #endif
 

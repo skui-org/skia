@@ -11,7 +11,7 @@
 #include "GrRenderTargetProxy.h"
 #include "GrTextureProxy.h"
 
-#ifdef SK_BUILD_FOR_WIN
+#ifdef _MSC_VER
 // Windows gives warnings about inheriting asTextureProxy/asRenderTargetProxy via dominance.
 #pragma warning(push)
 #pragma warning(disable: 4250)
@@ -38,7 +38,7 @@ private:
     size_t onUninstantiatedGpuMemorySize() const override;
 };
 
-#ifdef SK_BUILD_FOR_WIN
+#ifdef _MSC_VER
 #pragma warning(pop)
 #endif
 

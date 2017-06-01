@@ -706,7 +706,7 @@ static float gaussianIntegral(float x) {
 */
 
 uint8_t* SkBlurMask::ComputeBlurProfile(SkScalar sigma) {
-    int size = SkScalarCeilToInt(6*sigma);
+    std::size_t size = SkScalarCeilToInt(6*sigma);
 
     int center = size >> 1;
     uint8_t* profile = new uint8_t[size];

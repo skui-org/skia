@@ -64,7 +64,7 @@ static inline float sk_float_pow(float base, float exp) {
     #define sk_float_log2(x)        log2f(x)
 #endif
 
-#ifdef SK_BUILD_FOR_WIN
+#ifdef _MSC_VER
     #define sk_float_isfinite(x)    _finite(x)
     #define sk_float_isnan(x)       _isnan(x)
     static inline int sk_float_isinf(float x) {
