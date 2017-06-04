@@ -38,8 +38,15 @@ if(CMAKE_COMPILER_IS_GNUCXX OR ${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
                       -Wno-pedantic
                       -Wno-missing-field-initializers
                       -Wno-sign-compare
-                      -Wno-unused-parameter
-                      )
+                      -Wno-unused-parameter)
+  if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 7)
+    add_compile_options(-Wimplicit-fallthrough=0
+                        -Wformat=0
+                        -Wno-format-extra-args
+                        -Wno-int-in-bool-context
+                        -Wno-strict-aliasing
+                        -Wno-unused)
+  endif()
   if(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
     add_compile_options(-fms-extensions)
   else()
