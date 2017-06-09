@@ -730,7 +730,7 @@ set(skia_sources
     src/xml/SkDOM.cpp
     src/xml/SkXMLParser.cpp
     src/xml/SkXMLWriter.cpp
-    
+
     third_party/etc1/etc1.cpp
 
     third_party/gif/SkGifImageReader.cpp
@@ -895,7 +895,7 @@ if(X86)
               src/opts/SkOpts_sse42.cpp
               src/opts/SkOpts_ssse3.cpp
               )
-  if(NOT MSVC)
+  if((NOT MSVC) OR (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang"))
     set_source_files_properties(src/opts/SkBitmapProcState_opts_SSSE3.cpp PROPERTIES COMPILE_FLAGS -mssse3)
   endif()
 elseif(ARM)
