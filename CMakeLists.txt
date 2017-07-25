@@ -413,8 +413,8 @@ set(skia_sources
     src/gpu/gl/GrGLContext.cpp
   # src/gpu/gl/GrGLCreateNativeInterface_none.cpp
     src/gpu/gl/GrGLCreateNullInterface.cpp
-    src/gpu/gl/GrGLDefaultInterface_native.cpp
-  # src/gpu/gl/GrGLDefaultInterface_none.cpp
+  # src/gpu/gl/GrGLDefaultInterface_native.cpp
+    src/gpu/gl/GrGLDefaultInterface_none.cpp
     src/gpu/gl/GrGLExtensions.cpp
     src/gpu/gl/GrGLGLSL.cpp
     src/gpu/gl/GrGLGpu.cpp
@@ -803,7 +803,7 @@ endif()
 # OS specific files
 if(WIN32)
   list(APPEND skia_sources
-              src/gpu/gl/win/GrGLCreateNativeInterface_win.cpp
+              #src/gpu/gl/win/GrGLCreateNativeInterface_win.cpp
               src/ports/SkDebug_win.cpp
               src/ports/SkFontHost_win.cpp
               src/ports/SkFontMgr_win_dw.cpp
@@ -844,21 +844,21 @@ if(UNIX)
               )
   if(APPLE)
     list(APPEND skia_sources
-                src/gpu/gl/mac/GrGLCreateNativeInterface_mac.cpp
+                #src/gpu/gl/mac/GrGLCreateNativeInterface_mac.cpp
                 src/ports/SkFontHost_mac.cpp
                 src/ports/SkImageEncoder_CG.cpp
                 src/ports/SkImageGeneratorCG.cpp
                 )
     if(ARM)
       list(APPEND skia_sources
-                  src/gpu/gl/iOS/GrGLCreateNativeInterface_iOS.cpp
+                  #src/gpu/gl/iOS/GrGLCreateNativeInterface_iOS.cpp
                   )
     endif()
   elseif(ANDROID)
     list(APPEND skia_sources
                 src/codec/SkAndroidCodec.cpp
                 src/codec/SkSampledCodec.cpp
-                src/gpu/gl/android/GrGLCreateNativeInterface_android.cpp
+                #src/gpu/gl/android/GrGLCreateNativeInterface_android.cpp
                 src/ports/SkDebug_android.cpp
                 src/ports/SkFontHost_android.cpp
                 src/ports/SkFontMgr_android.cpp
@@ -867,7 +867,7 @@ if(UNIX)
                 )
   else() # currently assume linux
     list(APPEND skia_sources
-                src/gpu/gl/egl/GrGLCreateNativeInterface_egl.cpp
+                #src/gpu/gl/egl/GrGLCreateNativeInterface_egl.cpp
                 #src/gpu/gl/glx/GrGLCreateNativeInterface_glx.cpp
                 )
   endif()
