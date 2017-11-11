@@ -17,6 +17,8 @@
 #include <utility>
 #include <vector>
 
+#undef max
+
 // SkArenaAlloc allocates object and destroys the allocated objects when destroyed. It's designed
 // to minimize the number of underlying block allocations. SkArenaAlloc allocates first out of an
 // (optional) user-provided block of memory, and when that's exhausted it allocates on the heap,

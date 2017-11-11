@@ -18,6 +18,8 @@
 #include "SkRefCnt.h"
 #include "SkTemplates.h"
 
+#undef max
+
 class SkRBuffer;
 class SkWBuffer;
 
