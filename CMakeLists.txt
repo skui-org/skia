@@ -2,7 +2,7 @@
 #
 # The MIT License (MIT)
 #
-# Copyright (c) 2017 Ruben Van Boxem
+# Copyright © 2017-2018 Ruben Van Boxem
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -799,7 +799,7 @@ set(skia_sources
     src/sksl/ir/SkSLType.cpp
     src/sksl/ir/SkSLSymbolTable.cpp
     src/sksl/ir/SkSLType.cpp
-    src/sksl/lex/Main.cpp
+  # src/sksl/lex/Main.cpp
     src/sksl/lex/NFA.cpp
     src/sksl/lex/RegexNode.cpp
     src/sksl/lex/RegexParser.cpp
@@ -812,7 +812,7 @@ set(skia_sources
     src/sksl/SkSLIRGenerator.cpp
     src/sksl/SkSLLayoutLexer.cpp
     src/sksl/SkSLLexer.cpp
-    src/sksl/SkSLMain.cpp
+  # src/sksl/SkSLMain.cpp
     src/sksl/SkSLParser.cpp
     src/sksl/SkSLSPIRVCodeGenerator.cpp
     src/sksl/SkSLString.cpp
