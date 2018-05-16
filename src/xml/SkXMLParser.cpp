@@ -61,6 +61,11 @@ const XML_Memory_Handling_Suite sk_XML_alloc = {
     sk_free
 };
 
+void skXML_ParserFree(XML_Parser p)
+{
+  XML_ParserFree(p);
+}
+
 struct ParsingContext {
     ParsingContext(SkXMLParser* parser)
         : fParser(parser)
@@ -78,7 +83,7 @@ struct ParsingContext {
     }
 
     SkXMLParser* fParser;
-    SkAutoTCallVProc<skstd::remove_pointer_t<XML_Parser>, XML_ParserFree> fXMLParser;
+    SkAutoTCallVProc<skstd::remove_pointer_t<XML_Parser>, skXML_ParserFree> fXMLParser;
 
 private:
     SkString fBufferedText;
